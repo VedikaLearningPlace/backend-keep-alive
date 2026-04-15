@@ -1,19 +1,18 @@
 name: Keep Backend Alive
 
 on:
-schedule:
-- cron: '*/10 * * * *'
-workflow_dispatch:
+  schedule:
+    # Runs every 14 minutes
+    - cron: '*/10 * * * *'
+  workflow_dispatch:  # Allows you to run it manually
 
 jobs:
-ping-backend:
-runs-on: ubuntu-latest
-
-```
-steps:
-  - name: Ping the backend
-    run: |
-      echo "Pinging backend at $(date)"
-      curl -f https://vedika-backend-fgvd.onrender.com || echo "Ping failed but continuing"
-      echo "Ping completed"
-```
+  ping-backend:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Ping the backend
+        run: |
+          echo "Pinging backend at $(date)"
+          curl -f https://vedika-backend-fgvd.onrender.com || echo "Ping failed but continuing"
+          echo "Ping completed"
